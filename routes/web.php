@@ -14,4 +14,5 @@
 Route::get('/', 'LinkController@index');
 Route::get('employ', 'LinkController@employ');
 Route::get('hack', 'LinkController@hack');
-Route::get('insert', 'LinkController@insert');
+Route::get('insert', 'LinkController@inserts');
+Route::post('employ/register', 'LinkController@register')->name('employ.register');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WebRegisterRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,14 +12,22 @@ class LinkController extends Controller
 {
     public function index()
     {
-        $categories = Category::with('links')->get();
+        $categories = Category::with('links')->status(Category::ONLINE)->get();
 
         return view('index', compact('categories'));
     }
 
     public function employ()
     {
-        return view('employ');
+        $categories = Category::with('links')->canRegister(Category::CAN_REGISTER)->get();
+
+        return view('employ', compact('categories'));
+    }
+
+    public function register(WebRegisterRequest $request)
+    {
+        $data = request()->only(['web_name', 'link', 'category_id']);
+        dd($data);
     }
 
     /**
