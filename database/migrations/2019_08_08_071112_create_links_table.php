@@ -21,6 +21,7 @@ class CreateLinksTable extends Migration
             $table->tinyInteger('status')->default(0)->nullable();
             $table->unsignedBigInteger('view')->default(0)->nullable();
             $table->string('ip')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }

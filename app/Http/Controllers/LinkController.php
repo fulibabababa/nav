@@ -11,7 +11,9 @@ class LinkController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $categories = Category::with('links')->get();
+
+        return view('index', compact('categories'));
     }
 
     public function employ()
@@ -51,6 +53,8 @@ class LinkController extends Controller
             $list     = $item['list'];
             $list     = array_map(function ($v) use ($category) {
                 $v['category_id'] = $category->id;
+                $v['type']        = 'self';
+                $v['status']      = 1;
                 return $v;
             }, $list);
             DB::table('links')->insert($list);
