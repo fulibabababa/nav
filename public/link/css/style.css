@@ -1,0 +1,368 @@
+/* Required height of parents of the Full Page Carousel for proper displaying carousel itself */
+html,
+body,
+.view {
+    height: 100%;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("../img/background.jpeg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+
+.rgba-gradient {
+    background: linear-gradient(309deg, #ab1abe, #dc770b);
+    background-size: 400% 400%;
+
+    -webkit-animation: background-rgb 3s ease infinite;
+    -moz-animation: background-rgb 3s ease infinite;
+    animation: background-rgb 3s ease infinite;
+}
+
+@-webkit-keyframes background-rgb {
+    0% {
+        background-position: 0 44%
+    }
+    50% {
+        background-position: 100% 57%
+    }
+    100% {
+        background-position: 0 44%
+    }
+}
+
+@-moz-keyframes background-rgb {
+    0% {
+        background-position: 0 44%
+    }
+    50% {
+        background-position: 100% 57%
+    }
+    100% {
+        background-position: 0 44%
+    }
+}
+
+@keyframes background-rgb {
+    0% {
+        background-position: 0 44%
+    }
+    50% {
+        background-position: 100% 57%
+    }
+    100% {
+        background-position: 0 44%
+    }
+}
+
+/* Full Page Carousel itself*/
+.carousel {
+    height: 100%;
+}
+
+.carousel .carousel-inner {
+    height: 100%;
+}
+
+.carousel .carousel-inner .carousel-item,
+.carousel .carousel-inner .active {
+    height: 100%;
+}
+
+/* Navbar animation */
+.navbar {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.top-nav-collapse {
+    background-color: #1C2331;
+}
+
+/* Adding color to the Navbar on mobile */
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: #1C2331;
+    }
+}
+
+/* Footer color for sake of consistency with Navbar */
+.page-footer {
+    background-color: #1C2331;
+}
+
+.mt-6, .my-6 {
+    margin-top: 5rem !important
+}
+
+.p-6, .p-6 {
+    padding: 5rem 0
+}
+
+.category_card:not(:last-child) {
+    margin-bottom: 3rem;
+}
+
+/*评论*/
+.nav.tabs-primary.tabs-animated .floor {
+    background-color: #2bbbad !important;
+}
+
+.avatar {
+    width: 70px;
+}
+
+.employ-list .media:not(:last-child) {
+    /*border-bottom: 1px solid #000;*/
+    /*padding: 2rem 0;*/
+    margin-bottom: 1rem;
+}
+
+.employ-pagination .pagination .page-item .page-link {
+    color: #fff;
+}
+
+.comment-section.v-1 {
+    list-style: none;
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
+    margin: 50px auto;
+    font-size: 13px;
+}
+
+.comment-section.v-1 .comment {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom: 45px;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    color: #4f4f4f;
+}
+
+.comment-section.v-1 .comment .info {
+    width: 17%;
+}
+
+.comment-section.v-1 .comment .info a {
+    display: block;
+    text-decoration: none;
+    color: #656c71;
+    font-weight: bold;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0 0 0;
+}
+
+.comment-section.v-1 .comment .info span {
+    font-size: 11px;
+    color: #9ca7af;
+}
+
+.comment-section.v-1 .comment .avatar {
+    width: 8%;
+}
+
+.comment-section.v-1 .comment .avatar img {
+    display: block;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.comment-section.v-1 .comment p {
+    line-height: 1.5;
+    padding: 18px 22px;
+    width: 50%;
+    position: relative;
+    word-wrap: break-word;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    -webkit-border-radius: .25rem;
+    border-radius: .25rem;
+}
+
+.comment-section.v-1 .comment.user-comment .info {
+    text-align: right;
+}
+
+.comment-section.v-1 .comment.user-comment .avatar {
+    padding: 10px 18px 0 3px;
+}
+
+.comment-section.v-1 .comment.user-comment .avatar img {
+    float: right;
+}
+
+.comment-section.v-1 .comment.user-comment p {
+    background-color: #F1E1D1;
+}
+
+.comment-section.v-1 .comment.user-comment p:after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2px solid #F1E1D1;
+    left: -8px;
+    top: 18px;
+}
+
+.comment-section.v-1 .comment.author-comment {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.comment-section.v-1 .comment.author-comment .info {
+    -webkit-box-ordinal-group: 4;
+    -webkit-order: 3;
+    -ms-flex-order: 3;
+    order: 3;
+}
+
+.comment-section.v-1 .comment.author-comment .avatar {
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+    -ms-flex-order: 2;
+    order: 2;
+    padding: 10px 3px 0 18px;
+}
+
+.comment-section.v-1 .comment.author-comment p {
+    background-color: #C1D1EB;
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+}
+
+.comment-section.v-1 .comment.author-comment p:after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2px solid #C1D1EB;
+    right: -8px;
+    top: 18px;
+}
+
+.comment-section.v-1 .write-new {
+    margin: 50px auto 0;
+    width: 50%;
+}
+
+.comment-section.v-1 .write-new .md-form.md-outline textarea.md-textarea:focus:not([readonly]) {
+    border-color: #e0cebc;
+    -webkit-box-shadow: inset 0 0 0 1px #e0cebc;
+    box-shadow: inset 0 0 0 1px #e0cebc;
+}
+
+.comment-section.v-1 .write-new .md-form textarea ~ label.active {
+    color: #e0cebc;
+}
+
+.comment-section.v-1 .write-new img {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.comment-section.v-1 .write-new button {
+    float: right;
+}
+
+@media (max-width: 850px) {
+    .comment-section.v-1 .comment .info {
+        width: auto;
+    }
+
+    .comment-section.v-1 .comment .info a {
+        padding-top: 15px;
+    }
+
+    .comment-section.v-1 .comment p {
+        width: 100%;
+    }
+
+    .comment-section.v-1 .comment.user-comment .info {
+        -webkit-box-ordinal-group: 4;
+        -webkit-order: 3;
+        -ms-flex-order: 3;
+        order: 3;
+        text-align: left;
+    }
+
+    .comment-section.v-1 .comment.user-comment .avatar {
+        -webkit-box-ordinal-group: 3;
+        -webkit-order: 2;
+        -ms-flex-order: 2;
+        order: 2;
+    }
+
+    .comment-section.v-1 .comment.user-comment p {
+        -webkit-box-ordinal-group: 2;
+        -webkit-order: 1;
+        -ms-flex-order: 1;
+        order: 1;
+    }
+
+    .comment-section.v-1 .comment.author-comment {
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+
+    .comment-section.v-1 .comment.author-comment .info {
+        -webkit-box-ordinal-group: 4;
+        -webkit-order: 3;
+        -ms-flex-order: 3;
+        order: 3;
+    }
+
+    .comment-section.v-1 .comment.author-comment .avatar {
+        -webkit-box-ordinal-group: 3;
+        -webkit-order: 2;
+        -ms-flex-order: 2;
+        order: 2;
+    }
+
+    .comment-section.v-1 .comment.user-comment .avatar, .comment-section.v-1 .comment.author-comment .avatar {
+        padding: 15px 10px 0 18px;
+        width: auto;
+    }
+
+    .comment-section.v-1 .comment.user-comment p:after, .comment-section.v-1 .comment.author-comment p:after {
+        top: initial;
+        left: 28px;
+        bottom: -6px;
+    }
+
+    .comment-section.v-1 .write-new {
+        width: 100%;
+    }
+}

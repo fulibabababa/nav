@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'LinkController@index');
+Route::get('employ', 'LinkController@employ');
