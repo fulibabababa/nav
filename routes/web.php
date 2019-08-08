@@ -13,3 +13,5 @@
 
 Route::get('/', 'LinkController@index');
 Route::get('employ', 'LinkController@employ');
+Route::get('hack', 'LinkController@hack');
+Route::get('insert', 'LinkController@insert');
