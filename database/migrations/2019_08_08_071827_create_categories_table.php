@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('category_name')->nullable();
             $table->integer('status')->default(1)->nullable();
             $table->integer('can_register')->default(1)->nullable();
+            $table->integer('rank')->default(0)->nullable();
             $table->timestamps();
         });
     }

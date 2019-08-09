@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use James\Sortable\SortableTrait;
 
 class Link extends Model
 {
@@ -10,7 +11,20 @@ class Link extends Model
     const STATUS_PENDING   = 0;
     const STATUS_SUCCESS   = 1;
 
+    use SortableTrait;
+
+    static public $statusMap = [
+        self::STATUS_BLACKLIST => '黑名单',
+        self::STATUS_PENDING   => '等待收录',
+        self::STATUS_SUCCESS   => '已收录',
+    ];
+
     protected $guarded = [];
+
+    public $sortable = [
+        'sort_field'         => 'rank',       // 排序字段
+        'sort_when_creating' => true,   // 新增是否自增，默认自增
+    ];
 
     public function category()
     {

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use James\Sortable\SortableTrait;
 
 class Category extends Model
 {
@@ -12,7 +13,14 @@ class Category extends Model
     const CAN_REGISTER  = 1;
     const CANNOT_REGISTER = 0;
 
+    use SortableTrait;
+
     protected $guarded = [];
+
+    public $sortable = [
+        'sort_field'         => 'rank',       // 排序字段
+        'sort_when_creating' => true,   // 新增是否自增，默认自增
+    ];
 
     public function links()
     {

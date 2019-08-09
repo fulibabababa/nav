@@ -70,16 +70,18 @@ class LinkController extends Controller
     {
         $json_string = file_get_contents(base_path('database/data.json'));
         $data        = collect(json_decode($json_string, true));
-        $data->each(function ($item) {
+        $rank        = 1;
+        $data->each(function ($item) use (&$rank) {
             $category = Category::create(['category_name' => $item['category_name']]);
             $list     = $item['list'];
-            $list     = array_map(function ($v) use ($category) {
+            $list     = array_map(function ($v) use ($category, &$rank) {
                 $v['category_id'] = $category->id;
                 $v['type']        = 'self';
                 $v['status']      = 1;
                 $v['domain_name'] = url_domain_name($v['link']);
                 $v['top_domain']  = url_top_domain($v['link']);
-
+                $v['rank']        = $rank;
+                $rank++;
                 return $v;
             }, $list);
             DB::table('links')->insert($list);

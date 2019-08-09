@@ -25,6 +25,7 @@ class CreateLinksTable extends Migration
             $table->string('ip')->nullable();
             $table->tinyInteger('failure_times')->default(0)->nullable();
             $table->string('type')->nullable();
+            $table->integer('rank')->default(0)->nullable();
             $table->timestamps();
         });
     }
