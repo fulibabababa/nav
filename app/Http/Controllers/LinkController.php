@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\WebRegisterRequest;
 use App\Models\Category;
 use App\Models\Link;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use QL\QueryList;
 
 class LinkController extends Controller
@@ -78,5 +80,49 @@ class LinkController extends Controller
             }, $list);
             DB::table('links')->insert($list);
         });
+    }
+
+    public function check()
+    {
+
+        $links = Link::other()->notInBlackList()->get();
+        $urls  = $links->pluck('link');
+        if ($urls->isEmpty()) {
+        }
+        QueryList::multiGet($urls->toArray())
+            ->concurrency(5)
+            // 设置GuzzleHttp的一些其他选项
+            ->withOptions([
+                'timeout' => 60
+            ])
+            ->success(function (QueryList $ql, Response $response, $index) use ($links) {
+                $link = $links[$index];
+                echo $link->web_name;
+
+                $text = $ql->find('a[href="http://nav.showtime.test"]')->text();
+                if (empty($text) || !Str::contains($text, '可儿福利导航')) {
+                    if ($link->isOverMaxFailure()) {
+                        $link->status = Link::STATUS_BLACKLIST;
+                    } else {
+                        $link->increment('failure_times');
+                    }
+                } else {
+                    $link->status = Link::STATUS_SUCCESS;
+                }
+                $link->save();
+            })
+            ->error(function (QueryList $ql, $reason, $index) use ($links) {
+                $link = $links[$index];
+                echo $link->web_name;
+
+                if ($link->isOverMaxFailure()) {
+                    $link->status = Link::STATUS_BLACKLIST;
+                } else {
+                    $link->increment('failure_times');
+                }
+
+                $link->save();
+            })
+            ->send();
     }
 }

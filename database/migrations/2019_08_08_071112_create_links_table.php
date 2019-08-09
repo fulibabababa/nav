@@ -23,7 +23,7 @@ class CreateLinksTable extends Migration
             $table->tinyInteger('status')->default(0)->nullable();
             $table->unsignedBigInteger('view')->default(0)->nullable();
             $table->string('ip')->nullable();
-            $table->tinyInteger('timeout_times')->default(0)->nullable();
+            $table->tinyInteger('failure_times')->default(0)->nullable();
             $table->string('type')->nullable();
             $table->timestamps();
         });
