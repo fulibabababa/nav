@@ -6,5 +6,6 @@ return [
     'crontab'           => [
         'check_pending_per_time' => 2,
         'check_success_per_time' => 1,
-    ]
+    ],
+    'email'             => 'keerdh@gmail.com'
 ];

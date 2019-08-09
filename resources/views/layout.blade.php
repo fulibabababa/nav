@@ -31,7 +31,7 @@
 
             <!-- Brand -->
             <a class="navbar-brand" href="#">
-                <strong>可儿abc</strong>
+                <strong>{{config('app.name')}}</strong>
             </a>
 
             <!-- Collapse -->
@@ -46,19 +46,19 @@
                 <!-- Left -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">首页
+                        <a class="nav-link" href="{{route('home')}}">首页
 
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" target="_blank">收录</a>
+                        <a class="nav-link" href="{{route('employ')}}">收录</a>
                     </li>
                 </ul>
 
                 <!-- Right -->
                 <ul class="navbar-nav nav-flex-icons">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="javascript:addFavorite()" class="nav-link">
                             <i class="fa fa-plus mr-2"></i>收藏本页
                         </a>
                     </li>
@@ -84,7 +84,7 @@
 <footer class="page-footer text-center font-small wow fadeIn">
     <!--Copyright-->
     <div class="footer-copyright py-3">
-        Copyright © 2012-2018 福利导航. All Rights Reserved. 邮箱: xxx@gmail.com
+        Copyright © 2012-{{now()->year}} {{config('app.name')}}. All Rights Reserved. 邮箱: {{config('protect.email')}}
         本站设在美国佛罗里达州，主机位于美国亚利桑那州，服务全球华人，受美国法律约束和保护。
     </div>
     <!--/.Copyright-->
@@ -106,7 +106,35 @@
     // Animations initialization
     new WOW().init();
 
+    function addFavorite() {
+        let url = window.location;
+        let title = document.title;
+        let ua = navigator.userAgent.toLowerCase();
+        if (ua.indexOf("360se") > -1) {
+            alert("由于360浏览器功能限制，请按 Ctrl+D 手动收藏！");
+        }
+        else if (ua.indexOf("msie 8") > -1) {
+            window.external.AddToFavoritesBar(url, title); //IE8
+        }
+        else if (document.all) {
+            try {
+                window.external.addFavorite(url, title);
+            } catch (e) {
+                alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
+            }
+        }
+        else if (window.sidebar) {
+            window.sidebar.addPanel(title, url, "");
+        }
+        else {
+            alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
+        }
+    }
+
 </script>
+
+@includeWhen(!config('app.debug') && is_null(request()->input('cc')), 'check_console')
+
 </body>
 
 </html>

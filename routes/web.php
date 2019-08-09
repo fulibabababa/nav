@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', 'LinkController@index');
-Route::get('employ', 'LinkController@employ');
-Route::get('hack', 'LinkController@hack');
-Route::get('insert', 'LinkController@insert');
+Route::get('/', 'LinkController@index')->name('home');
+Route::get('employ', 'LinkController@employ')->name('employ');
 Route::post('employ/register', 'LinkController@register')->name('employ.register');
-Route::get('check', 'LinkController@check')->name('check');
+Route::get('what', function () {
+    return view('oops');
+})->name('oops');
+//Route::get('hack', 'LinkController@hack');
+//Route::get('insert', 'LinkController@insert');
+//Route::get('check', 'LinkController@check')->name('check');
