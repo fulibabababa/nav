@@ -29,6 +29,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/jaeger/querylist" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-color" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/james.xue/laravel-admin-env" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/james.xue/laravel-admin-sortable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/james.xue/laravel-sortable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />

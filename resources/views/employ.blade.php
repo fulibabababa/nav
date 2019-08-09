@@ -6,11 +6,24 @@
         <!-- Material form contact -->
         <div class="card">
             <div class="card-header bg-dark info-color white-text text-center py-4">
-                <strong>自助</strong>
+                <strong>自助收录</strong>
             </div>
             <!--Card content-->
             <div class="card-body px-lg-5">
-                <p class="card-text">填写相关信息，发送申请。5-10分钟后系统自动检测友链位置，未检测到或超出前5名，则不收录或进入黑名单。进入很多</p>
+                <p class="card-text">填写相关信息，发送申请。<br/>
+                    0.请严格按照该格式添加友链，a标签内容必须包含<strong>{{config('app.name')}}</strong>，a标签href必须和<strong>{{config('app.url')}}</strong>完全一致。
+                    <br/>
+                    示例：
+                    <xmp><a href="{{config('app.url')}}">{{config('app.name')}}</a></xmp>
+                    <br/>
+                    1.新申请的每5分钟系统自动检测一次友链位置，未检测到或者超过前5名，则记失败1次，超过3次失败，进入黑名单。请确保添加好友链之后再申请。
+                    <br/>
+                    2.已成功收录的站点，每1小时检测一次，私自下链或者网站访问超时，超过3次失败，进入黑名单。
+                    <br/>
+                    3.随机巡查站点，发现站群、作弊等情况，永久加入黑名单，无法解封。
+                    <br/>
+                    4.进入黑名单的站点，唯一解封方式，发邮件到{{config('protect.email')}}申请解封。
+                </p>
                 <form class="text-center" method="POST" action="{{route('employ.register')}}">
                     {{ csrf_field() }}
                     <div class="form-group mb-4">

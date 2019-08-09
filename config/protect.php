@@ -2,10 +2,10 @@
 
 return [
     'env'               => env('MOCK_ENV'),
-    'max_failure_times' => 2,
+    'max_failure_times' => env('MAX_FAILURE_TIMES', 2),
     'crontab'           => [
-        'check_pending_per_time' => 2,
-        'check_success_per_time' => 1,
+        'check_pending_per_time' => env('CHECK_PENDING_PER_TIME', 1),
+        'check_success_per_time' => env('CHECK_SUCCESS_PER_TIME', 1),
     ],
-    'email'             => 'keerdh@gmail.com'
+    'email'             => env('PROJECT_EMAIL','xxx@gmail.com')
 ];

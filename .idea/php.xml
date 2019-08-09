@@ -105,6 +105,7 @@
       <path value="$PROJECT_DIR$/vendor/overtrue/laravel-lang" />
       <path value="$PROJECT_DIR$/vendor/james.xue/laravel-sortable" />
       <path value="$PROJECT_DIR$/vendor/james.xue/laravel-admin-sortable" />
+      <path value="$PROJECT_DIR$/vendor/james.xue/laravel-admin-env" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

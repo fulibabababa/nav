@@ -397,6 +397,9 @@ return [
     'extensions' => [
         'sortableColumn' => [
             'enable' => true,
+        ],
+        'env' => [
+            'enable' => true,
         ]
     ],
 ];

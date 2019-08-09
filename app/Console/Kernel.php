@@ -33,12 +33,12 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             $links = Link::other()->inPending()->get();
             $this->checkFriend($links);
-        })->cron('*/'.config('protect.crontab.check_pending_per_time').' * * * *');
+        })->cron('*/' . config('protect.crontab.check_pending_per_time') . ' * * * *');
 
         $schedule->call(function () {
             $links = Link::other()->inSuccess()->get();
             $this->checkFriend($links);
-        })->cron('*/'.config('protect.crontab.check_success_per_time').' * * * *');
+        })->cron('*/' . config('protect.crontab.check_success_per_time') . ' * * * *');
     }
 
     /**
@@ -70,8 +70,9 @@ class Kernel extends ConsoleKernel
                 $link = $links[$index];
                 echo $link->web_name;
 
-                $text = $ql->find('a[href="http://nav.showtime.test"]')->text();
-                if (empty($text) || !Str::contains($text, '可儿福利导航')) {
+                $selector = 'a[href="' . config('app.url') . '"]';
+                $text     = $ql->find($selector)->text();
+                if (empty($text) || !Str::contains($text, config('app.name'))) {
                     if ($link->isOverMaxFailure()) {
                         $link->status = Link::STATUS_BLACKLIST;
                     } else {
