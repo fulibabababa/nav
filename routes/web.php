@@ -20,3 +20,18 @@ Route::get('what', function () {
 //Route::get('hack', 'LinkController@hack');
 //Route::get('insert', 'LinkController@insert');
 //Route::get('check', 'LinkController@check')->name('check');
+
+Route::match(['get', 'post'], '/git/deploy', function () {
+    $shell   = ["/bin/bash", base_path('resources/shell/deploy.sh'), base_path()];
+    $process = new \Symfony\Component\Process\Process($shell);
+    $process->start();
+    $process->wait(function ($type, $buffer) {
+        if (\Symfony\Component\Process\Process::ERR === $type) {
+            $str = 'ERR > ' . $buffer;
+        } else {
+            $str = 'OUT > ' . $buffer;
+        }
+        \Illuminate\Support\Facades\Log::info('command:' . $str);
+        echo $str;
+    });
+});
