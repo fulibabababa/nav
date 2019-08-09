@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\WebRegisterRequest;
 use App\Models\Category;
+use App\Models\Link;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use QL\QueryList;
@@ -21,13 +22,19 @@ class LinkController extends Controller
     {
         $categories = Category::with('links')->canRegister(Category::CAN_REGISTER)->get();
 
-        return view('employ', compact('categories'));
+        $links = Link::with('category')->orderByDesc('id')->paginate(20);
+
+        return view('employ', compact('categories', 'links'));
     }
 
     public function register(WebRegisterRequest $request)
     {
-        $data = request()->only(['web_name', 'link', 'category_id']);
-        dd($data);
+        $data                = request()->only(['web_name', 'link', 'category_id']);
+        $data['top_domain']  = url_top_domain($data['link']);
+        $data['domain_name'] = url_domain_name($data['link']);
+        Link::create($data);
+
+        return redirect()->back();
     }
 
     /**
@@ -64,6 +71,9 @@ class LinkController extends Controller
                 $v['category_id'] = $category->id;
                 $v['type']        = 'self';
                 $v['status']      = 1;
+                $v['domain_name'] = url_domain_name($v['link']);
+                $v['top_domain']  = url_top_domain($v['link']);
+
                 return $v;
             }, $list);
             DB::table('links')->insert($list);

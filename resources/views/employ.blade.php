@@ -11,7 +11,7 @@
             <!--Card content-->
             <div class="card-body px-lg-5">
                 <p class="card-text">填写相关信息，发送申请。5-10分钟后系统自动检测友链位置，未检测到或超出前5名，则不收录或进入黑名单。进入很多</p>
-                <form class="text-center" method="post" action="{{route('employ.register')}}">
+                <form class="text-center" method="POST" action="{{route('employ.register')}}">
                     {{ csrf_field() }}
                     <div class="form-group mb-4">
                         <input type="text" class="form-control {{$errors->has('web_name')?'is-invalid':''}}"
@@ -57,132 +57,65 @@
             </div>
             <div class="card-body">
                 <div class="employ-list" id="comments-classic" role="tabpanel" aria-labelledby="comments-tab-classic">
-                    <div class="media shadow-lg p-3">
-                        <img class="avatar rounded-circle z-depth-1-half d-flex mr-3"
-                             src="https://mdbootstrap.com/img/Photos/Avatars/img (8).jpg"
-                             alt="Generic placeholder image">
-                        <div class="media-body">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="mt-0 mb-1 font-weight-bold">John Doe</h5>
-                                <ul class="list-unstyled mb-1 pb-2">
-                                    <li class="comment-date font-small font-weight-normal"><i
-                                                class="far fa-clock pr-2"></i>05/03/2019
-                                    </li>
-                                </ul>
+                    @isset($links)
+                        @foreach($links as $key=>$link)
+                            <div class="media shadow-lg p-3">
+                                <img class="avatar rounded-circle z-depth-1-half d-flex mr-3"
+                                     src="{{asset('link/img/avatar/'.random_int(1,10).'.jpg')}}"
+                                     alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <div class="d-flex justify-content-between">
+                                        <h5 class="mt-0 mb-1 font-weight-bold">{{$link->web_name}}</h5>
+                                        <ul class="list-unstyled mb-1 pb-2">
+                                            <li class="comment-date font-small font-weight-normal"><i
+                                                        class="far fa-clock pr-2"></i>{{isset($link->created_at)?$link->created_at->format('d/m/Y'):'未知'}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <p class="font-weight-light mt-2 mb-4">{{$link->category->category_name}}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;{{$link['link']}}</p>
+                                    <div>
+                                        <button type="button"
+                                                class="btn
+                                                 @switch($link['status'])
+                                                @case(-1)
+                                                        btn-danger
+                                                        @break
+                                                @case(0)
+                                                        btn-primary
+                                                        @break
+                                                @case(1)
+                                                        btn-success
+                                                        @break
+                                                @default
+                                                        btn-primary
+                                                        @endswitch
+                                                        btn-rounded btn-sm m-sm-0 mb-2 waves-effect waves-light">
+                                            <i class="fas fa-share pr-1"></i>
+                                            @switch($link['status'])
+                                                @case(-1)
+                                                黑名单
+                                                @break
+                                                @case(0)
+                                                等待收录
+                                                @break
+                                                @case(1)
+                                                已收录
+                                                @break
+                                                @default
+                                                等待收录
+                                            @endswitch
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="font-weight-light mt-2 mb-4">Great snippet! Thanks for sharing.</p>
-                            <div>
-                                <button type="button"
-                                        class="btn btn-primary btn-rounded btn-sm m-sm-0 mb-2 waves-effect waves-light">
-                                    <i class="fas fa-share pr-1"></i>等待收录
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="media shadow-lg p-3">
-                        <img class="avatar rounded-circle z-depth-1-half d-flex mr-3" src="img/avatar/1.jpg"
-                             alt="Generic placeholder image">
-                        <div class="media-body">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="mt-0 mb-1 font-weight-bold">John Doe</h5>
-                                <ul class="list-unstyled mb-1 pb-2">
-                                    <li class="comment-date font-small font-weight-normal"><i
-                                                class="far fa-clock pr-2"></i>05/03/2019
-                                    </li>
-                                </ul>
-                            </div>
-                            <p class="font-weight-light mt-2 mb-4">Great snippet! Thanks for sharing.</p>
-                            <div>
-                                <button type="button"
-                                        class="btn btn-primary btn-rounded btn-sm m-sm-0 mb-2 waves-effect waves-light">
-                                    <i class="fas fa-share pr-1"></i>等待收录
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="media shadow-lg p-3">
-                        <img class="avatar rounded-circle z-depth-1-half d-flex mr-3" src="img/avatar/2.jpg"
-                             alt="Generic placeholder image">
-                        <div class="media-body">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="mt-0 mb-1 font-weight-bold">John Doe</h5>
-                                <ul class="list-unstyled mb-1 pb-2">
-                                    <li class="comment-date font-small font-weight-normal"><i
-                                                class="far fa-clock pr-2"></i>05/03/2019
-                                    </li>
-                                </ul>
-                            </div>
-                            <p class="font-weight-light mt-2 mb-4">Great snippet! Thanks for sharing.</p>
-                            <div>
-                                <button type="button"
-                                        class="btn btn-primary btn-rounded btn-sm m-sm-0 mb-2 waves-effect waves-light">
-                                    <i class="fas fa-share pr-1"></i>等待收录
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="media shadow-lg p-3">
-                        <img class="avatar rounded-circle z-depth-1-half d-flex mr-3" src="img/avatar/3.jpg"
-                             alt="Generic placeholder image">
-                        <div class="media-body">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="mt-0 mb-1 font-weight-bold">John Doe</h5>
-                                <ul class="list-unstyled mb-1 pb-2">
-                                    <li class="comment-date font-small font-weight-normal"><i
-                                                class="far fa-clock pr-2"></i>05/03/2019
-                                    </li>
-                                </ul>
-                            </div>
-                            <p class="font-weight-light mt-2 mb-4">Great snippet! Thanks for sharing.</p>
-                            <div>
-                                <button type="button"
-                                        class="btn btn-primary btn-rounded btn-sm m-sm-0 mb-2 waves-effect waves-light">
-                                    <i class="fas fa-share pr-1"></i>等待收录
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="media shadow-lg p-3">
-                        <img class="avatar rounded-circle z-depth-1-half d-flex mr-3" src="img/avatar/4.jpg"
-                             alt="Generic placeholder image">
-                        <div class="media-body">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="mt-0 mb-1 font-weight-bold">John Doe</h5>
-                                <ul class="list-unstyled mb-1 pb-2">
-                                    <li class="comment-date font-small font-weight-normal"><i
-                                                class="far fa-clock pr-2"></i>05/03/2019
-                                    </li>
-                                </ul>
-                            </div>
-                            <p class="font-weight-light mt-2 mb-4">Great snippet! Thanks for sharing.</p>
-                            <div>
-                                <button type="button"
-                                        class="btn btn-primary btn-rounded btn-sm m-sm-0 mb-2 waves-effect waves-light">
-                                    <i class="fas fa-share pr-1"></i>等待收录
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endisset
                 </div>
                 <nav class="employ-pagination mt-4">
+
                     <ul class="pagination justify-content-center pg-red mb-0">
-                        <li class="page-item">
-                            <a class="page-link" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link">1</a></li>
-                        <li class="page-item"><a class="page-link">2</a></li>
-                        <li class="page-item"><a class="page-link">3</a></li>
-                        <li class="page-item"><a class="page-link">4</a></li>
-                        <li class="page-item"><a class="page-link">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
+                        {{$links->links()}}
                     </ul>
                 </nav>
             </div>

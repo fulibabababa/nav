@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Category;
+use App\Models\Link;
 use Illuminate\Foundation\Http\FormRequest;
 
 class WebRegisterRequest extends FormRequest
@@ -26,9 +27,18 @@ class WebRegisterRequest extends FormRequest
     {
         return [
             'web_name'    => ['required', 'string'],
-            'link'        => ['required', 'url'],
+            'link'        => [
+                'required', 'url',
+                function ($attribute, $value, $fail) {
+                    $exists = Link::where('top_domain', url_top_domain($value))->exists();
+                    if ($exists) {
+                        $fail('该域名已添加');
+                    }
+                },
+            ],
             'category_id' => [
-                'required', function ($attribute, $value, $fail) {
+                'required',
+                function ($attribute, $value, $fail) {
                     $exists = Category::where(['id' => $value, 'can_register' => 1])->exists();
                     if (!$exists) {
                         $fail('无法添加到该分类');

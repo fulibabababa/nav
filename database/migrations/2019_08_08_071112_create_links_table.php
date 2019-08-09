@@ -17,10 +17,13 @@ class CreateLinksTable extends Migration
             $table->bigIncrements('id');
             $table->string('web_name')->nullable();
             $table->string('link')->nullable();
+            $table->string('top_domain')->nullable();
+            $table->string('domain_name')->nullable();
             $table->bigInteger('category_id')->nullable();
             $table->tinyInteger('status')->default(0)->nullable();
             $table->unsignedBigInteger('view')->default(0)->nullable();
             $table->string('ip')->nullable();
+            $table->tinyInteger('timeout_times')->default(0)->nullable();
             $table->string('type')->nullable();
             $table->timestamps();
         });

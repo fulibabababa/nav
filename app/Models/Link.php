@@ -12,4 +12,14 @@ class Link extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function scopeOther($query)
+    {
+        return $query->where(['type' => null]);
+    }
+
+    public function scopeNotInBlackList($query)
+    {
+        return $query->where('status', '>=', 0);
+    }
 }
