@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'env'               => env('MOCK_ENV'),
     'max_failure_times' => 2,
     'crontab'           => [
         'check_pending_per_time' => 2,

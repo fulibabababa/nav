@@ -12,8 +12,11 @@
                         <div class="row text-center">
                             @if($category->links->isNotEmpty())
                                 @foreach($category->links as $i=>$link)
-                                    <button href="{{isProduct()?$link['href']:'#'}}" type="button"
-                                            class="btn btn-danger">{{isProduct()?$link['web_name']:'哈哈哈哈'}}</button>
+                                    <a href="{{isProduct()?$link['link']:'#'}}"
+                                            class="btn purple-gradient">
+                                        <i class="far fa-thumbs-up" aria-hidden="true"></i>
+                                        {{isProduct()?$link['web_name']:'哈哈哈哈'}}
+                                    </a>
                                 @endforeach
                             @endif
                         </div>

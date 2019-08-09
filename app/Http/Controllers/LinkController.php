@@ -15,7 +15,11 @@ class LinkController extends Controller
 {
     public function index()
     {
-        $categories = Category::with('links')->status(Category::ONLINE)->get();
+        $categories = Category::with([
+            'links' => function ($query) {
+                $query->where('status', Link::STATUS_SUCCESS);
+            }
+        ])->status(Category::ONLINE)->get();
 
         return view('index', compact('categories'));
     }
