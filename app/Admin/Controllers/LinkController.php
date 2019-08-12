@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Category;
 use App\Models\Link;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -45,11 +46,19 @@ class LinkController extends AdminController
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
-        $grid->filter(function($filter){
+        $categories       = Category::get(['id', 'category_name'])->toArray();
+        $selectCategories = [];
+        foreach ($categories as $key => $value) {
+            $selectCategories[$value['id']] = $value['category_name'];
+        }
+
+        $grid->filter(function ($filter) use ($selectCategories) {
             // 去掉默认的id过滤器
             $filter->disableIdFilter();
             // 在这里添加字段过滤器
             $filter->like('web_name', __('Web name'));
+
+            $filter->equal('category_id')->select($selectCategories);
 
         });
 
