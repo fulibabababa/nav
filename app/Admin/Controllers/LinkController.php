@@ -30,7 +30,7 @@ class LinkController extends AdminController
 
         $grid->paginate(200);
 
-        $grid->column('id', __('Id'));
+        $grid->column('id', __('Id'))->sortable();
         $grid->column('web_name', __('Web name'));
         $grid->column('link', __('Link'));
         $grid->column('top_domain', __('Top domain'));
