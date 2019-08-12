@@ -14,7 +14,7 @@
                                 @foreach($category->links as $i=>$link)
                                     <a href="{{isProduct()?$link['link']:'#'}}"
                                        class="btn
-                                            @if($i==1)
+                                            @if($i==0)
                                                purple-gradient
                                             @else
                                                btn-black
