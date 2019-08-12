@@ -17,7 +17,7 @@ class LinkController extends Controller
     {
         $categories = Category::with([
             'links' => function ($query) {
-                $query->where('status', Link::STATUS_SUCCESS);
+                $query->where('status', Link::STATUS_SUCCESS)->orderBy('rank');
             }
         ])->status(Category::ONLINE)->get();
 

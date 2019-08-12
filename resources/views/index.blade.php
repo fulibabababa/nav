@@ -13,7 +13,13 @@
                             @if($category->links->isNotEmpty())
                                 @foreach($category->links as $i=>$link)
                                     <a href="{{isProduct()?$link['link']:'#'}}"
-                                            class="btn purple-gradient">
+                                       class="btn
+                                            @if($i==1)
+                                               purple-gradient
+                                            @else
+                                               btn-black
+                                            @endif
+                                               ">
                                         <i class="far fa-thumbs-up" aria-hidden="true"></i>
                                         {{isProduct()?$link['web_name']:'哈哈哈哈'}}
                                     </a>
