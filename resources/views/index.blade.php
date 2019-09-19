@@ -17,10 +17,11 @@
                         {{$category['category_name']}}
                     </div>
                     <div class="card-body">
-                        <div class="row text-center">
+                        <div class="row text-center friend-link">
                             @if($category->links->isNotEmpty())
                                 @foreach($category->links as $i=>$link)
                                     <a href="{{isProduct()?$link['link']:'#'}}"
+                                       data-web-name="{{$link['web_name']}}"
                                        class="btn
                                             @if($i==0)
                                                purple-gradient

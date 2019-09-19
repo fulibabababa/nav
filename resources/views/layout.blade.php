@@ -162,6 +162,16 @@
         }
     }
 
+    $(function(){
+        $('.friend-link a').click(function () {
+            // console.log($(this).attr('data-web-name'));
+            gtag('event', 'outbound', {
+                'event_category': 'outbound',
+                'event_label': $(this).attr('data-web-name'),
+            });
+        });
+    })
+
 </script>
 
 @includeWhen(config('protect.check_console') && is_null(request()->input('cc')), 'check_console')
