@@ -2,6 +2,14 @@
 
 @section('content')
     <section>
+        <a href="http://jufuli365.com?f=keerdh">
+            <div class="index-banner">
+                <h3>{{isProduct()?'Baby扣穴':'Baby哈哈'}}</h3>
+                <img src="{{isProduct()?asset('link/img/1.gif'):asset('link/img/back.jpg')}}" alt="Baby扣穴"/>
+            </div>
+        </a>
+    </section>
+    <section>
         @isset($categories)
             @foreach($categories as $key=>$category)
                 <div class="card category_card bg-dark text-white z-depth-3 wow fadeIn">

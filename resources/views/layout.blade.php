@@ -20,12 +20,30 @@
                 background: #1C2331 !important;
             }
         }
+
+        .index-banner {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .index-banner h3 {
+            color: #fff;
+            font-weight: bolder;
+        }
+
+        .index-banner img {
+            max-width: 70%;
+        }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140684953-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-140684953-2');
@@ -63,6 +81,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('employ')}}">收录</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#footer">广告合作联系邮箱</a>
+                    </li>
                 </ul>
 
                 <!-- Right -->
@@ -91,7 +112,7 @@
 <!--Main layout-->
 
 <!--Footer-->
-<footer class="page-footer text-center font-small wow fadeIn">
+<footer class="page-footer text-center font-small wow fadeIn" id="footer">
     <!--Copyright-->
     <div class="footer-copyright py-3">
         Copyright © 2012-{{now()->year}} {{config('app.name')}}. All Rights Reserved. 邮箱: {{config('protect.email')}}
@@ -143,7 +164,7 @@
 
 </script>
 
-@includeWhen(!config('app.debug') && is_null(request()->input('cc')), 'check_console')
+@includeWhen(config('protect.check_console') && is_null(request()->input('cc')), 'check_console')
 
 </body>
 
