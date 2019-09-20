@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('content')
-    <section>
-        <a href="http://jufuli365.com?f=keerdh">
+    <section class="friend-link">
+        <a href="http://jufuli365.com?f=keerdh" data-web-name="天天">
             <div class="index-banner">
                 <h3>{{isProduct()?'Baby扣穴':'Baby哈哈'}}</h3>
                 <img src="{{isProduct()?asset('link/img/1.gif'):asset('link/img/back.jpg')}}" alt="Baby扣穴"/>
